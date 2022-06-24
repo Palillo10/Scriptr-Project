@@ -4,6 +4,10 @@ const router = express.Router();
 const csurf = require('csurf');
 const csrfProtection = csurf({ cookie: true });
 
+const apiRouter = require('./api');
+
+router.use('/api', apiRouter);
+
 
 router.get('/hello/world', csrfProtection, function (req, res) {
   res.cookie('XSRF-TOKEN', req.csrfToken());
