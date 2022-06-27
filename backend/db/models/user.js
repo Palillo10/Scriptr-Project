@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(30),
       allowNull: false,
       validate: {
         len: [3, 30],
@@ -18,11 +18,15 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: false,
       validate: {
         len: [3, 256]
       }
+    },
+    profilePic: {
+      type: DataTypes.STRING(255),
+      defaultValue: 'https://speckyboy.com/wp-content/uploads/2013/05/flickr_avatar_13.png'
     },
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
@@ -35,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       defaultScope: {
         attributes: {
-          exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt']
+          exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt', 'profilePic']
         }
       },
       scopes: {
@@ -50,6 +54,9 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function (models) {
     // associations can be defined here
+    User.hasMany(models.Album, { foreignKey: 'userId' })
+    User.hasMany(models.Picture, { foreignKey: 'userId' })
+    User.hasMany(models.Comment, { foreignKey: 'userId' })
   };
 
   User.prototype.toSafeObject = function () { // remember, this cannot be an arrow function

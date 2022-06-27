@@ -14,9 +14,13 @@ module.exports = {
         unique: true
       },
       email: {
-        type: Sequelize.STRING(256),
+        type: Sequelize.STRING(255),
         allowNull: false,
         unique: true
+      },
+      profilePic: {
+        type: Sequelize.STRING(255),
+        defaultValue: 'https://speckyboy.com/wp-content/uploads/2013/05/flickr_avatar_13.png'
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
