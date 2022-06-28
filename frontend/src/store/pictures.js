@@ -23,7 +23,7 @@ const picturesReducer = (state = initialState, action) => {
   // let newState = { ...state }
   switch (action.type) {
     case GET_PICTURES:
-      return [action.pictures];
+      return action.pictures;
     default:
       return state;
   }

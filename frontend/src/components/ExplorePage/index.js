@@ -1,24 +1,22 @@
 import React, { useEffect } from 'react';
 import { explorePictures } from '../../store/pictures';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import './ExplorePage.css'
 
 const ExplorePage = () => {
   const dispatch = useDispatch()
   const pictures = useSelector(state => state.pictures)
   // const picture = pictures[0]
-  // console.log(pictures)
+  console.log(pictures)
   useEffect(() => {
     dispatch(explorePictures())
   }, [dispatch])
-  if (!pictures.length) return <div>hello</div>
-  // return (
-  //   // <ul>
-  //   //   {pictures.map(picture => (<li key={picture.id}>
-  //   //     {/* <img src={`${picture.imageUrl}`} /> */}
-  //   //     {picture.name}
-  //   //   </li>
-  //   //   ))}
-  //   </ul >)
+  if (!pictures.length) return null
+  return pictures.map((picture) => <div>
+    <div>By: {picture.User.username}~~~~~~{picture.name}</div>
+    <img className="images" key={picture.id} src={`${picture.imageUrl}`} />
+  </div>
+  )
 }
 
 export default ExplorePage
