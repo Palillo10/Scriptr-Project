@@ -5,18 +5,26 @@ import './ExplorePage.css'
 
 const ExplorePage = () => {
   const dispatch = useDispatch()
-  const pictures = useSelector(state => state.pictures)
-  // const picture = pictures[0]
-  console.log(pictures)
+  const pictures = useSelector(state => state.pictures.allPictures)
+
+
+  const handleClick = () => {
+    //create song
+  }
+
   useEffect(() => {
     dispatch(explorePictures())
   }, [dispatch])
-  if (!pictures.length) return null
-  return pictures.map((picture) => <div>
-    <div>By: {picture.User.username}~~~~~~{picture.name}</div>
-    <img className="images" key={picture.id} src={`${picture.imageUrl}`} />
+
+
+  return <div>
+    <button onClick={handleClick}>Upload Picture</button>
+    {pictures.map((picture) => <div key={picture.id}>
+      <div>By: {picture.User.username}~~~~~~{picture.name}</div>
+      <img className="images" src={`${picture.imageUrl}`} alt="hello" />
+    </div>
+    )}
   </div>
-  )
 }
 
 export default ExplorePage

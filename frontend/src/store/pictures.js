@@ -18,12 +18,19 @@ export const explorePictures = () => async (dispatch) => {
   return res
 }
 
-const initialState = []
+const initialState = {
+  allPictures: []
+}
+
 const picturesReducer = (state = initialState, action) => {
-  // let newState = { ...state }
+  let newState = { ...state }
   switch (action.type) {
     case GET_PICTURES:
-      return action.pictures;
+      action.pictures.forEach(picture => {
+        newState[picture.id] = picture
+      });
+      newState.allPictures = action.pictures
+      return newState;
     default:
       return state;
   }
