@@ -1,7 +1,7 @@
 // frontend/src/App.js
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
@@ -25,9 +25,7 @@ function App() {
   }, [dispatch]);
 
 
-  // if (!user) {
-  //   history.replace()
-  // }
+  // if (!user) return <Redirect to="/" />
   return (
     <>
       <Navigation isLoaded={isLoaded} />
