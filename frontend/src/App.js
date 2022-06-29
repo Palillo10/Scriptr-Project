@@ -23,13 +23,13 @@ function App() {
           <Route exact path="/">
             Splash Page
           </Route>
-          <Route path="/explore">
+          <Route exact path="/explore">
             <ExplorePage />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/people/:userUrl" >
+          <Route exact path="/people/:username" >
             <ProfilePage />
           </Route>
         </Switch>

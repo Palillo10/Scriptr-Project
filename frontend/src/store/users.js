@@ -24,7 +24,7 @@ const usersReducer = (state = initialState, action) => {
     case GET_USERS:
       newState.allUsers = action.users
       action.users.forEach(user => {
-        newState[user.id] = user
+        newState[user.username] = user
       });
       return newState
     default:

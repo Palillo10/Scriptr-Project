@@ -16,7 +16,7 @@ const ExplorePage = () => {
   return <div>
     {pictures.map((picture) => <div key={picture.id}>
       <div>
-        <NavLink to={`/people/${picture.User.id}${picture.User.username}`}>By: {picture.User.username}</NavLink>~~~~~~{picture.name}</div>
+        <NavLink to={`/people/${picture.User.username}`}>By: {picture.User.username}</NavLink>~~~~~~{picture.name}</div>
       <img className="images" src={`${picture.imageUrl}`} alt="hello" />
     </div>
     )}

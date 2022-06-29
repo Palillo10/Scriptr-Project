@@ -39,7 +39,7 @@ function ProfileButton({ user }) {
       {showMenu && (
         <ul className="profile-dropdown">
           <li>
-            <NavLink exact to={`/people/${user.id}${user.username}`}>{user.username}</NavLink>
+            <NavLink exact to={`/people/${user.username}`}>{user.username}</NavLink>
           </li>
           <li>{user.email}</li>
           <li>

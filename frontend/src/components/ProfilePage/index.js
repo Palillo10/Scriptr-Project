@@ -6,8 +6,8 @@ import { createPicture } from "../../store/pictures";
 import './ProfilePage.css'
 const ProfilePage = () => {
   const dispatch = useDispatch()
-  const { userUrl } = useParams();
-  const user = useSelector(state => state.users[userUrl[0]])
+  const { username } = useParams();
+  const user = useSelector(state => state.users[username])
 
   const [name, setName] = useState('')
   const [imageUrl, setImageUrl] = useState('')
@@ -35,13 +35,18 @@ const ProfilePage = () => {
     // })
   }
   React.useEffect(() => {
+    dispatch(getAllUsers())
+  }, [dispatch])
+
+  React.useEffect(() => {
     const ele = document.getElementsByClassName('modalBackground')[0]
     setModalBackground(ele)
   }, [user])
 
-  React.useEffect(() => {
-    dispatch(getAllUsers())
-  }, [dispatch])
+
+  console.log(user)
+  // console.log(user.username)
+  if (user === undefined) return ("Not found")
 
   if (user) return (<div className="profilePageContainer">
     <div className="modalBackground">
@@ -76,7 +81,7 @@ const ProfilePage = () => {
       <button onClick={() => handleClick()}>Upload Picture</button>
     </div>
   </div>)
-  return ('loading')
+  // return ('loading')
 }
 
 
