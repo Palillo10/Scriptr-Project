@@ -1,6 +1,11 @@
-img {
+#avatar {
   width: 100px;
   height: 100px
+}
+
+.profileImages {
+  width: 550px;
+  height: 300px;
 }
 
 .profileHeader {
@@ -13,10 +18,12 @@ h1 {
 }
 
 .profilePageContainer {
-  border: 1px solid black;
-  width: 98vw;
-  height: 98vh;
-  overflow: hidden;
+  /* padding: 5px; */
+  /* border: 1px solid black; */
+  width: 99.5vw;
+  height: 91vh;
+  /* overflow: scroll;
+  overflow-x: hidden; */
 }
 
 

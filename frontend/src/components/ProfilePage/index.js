@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
 import { getAllUsers } from "../../store/users";
-import { createPicture } from "../../store/pictures";
+import { createPicture, explorePictures } from "../../store/pictures";
+
+import UserSongs from "./UserSongs";
+
 import './ProfilePage.css'
 const ProfilePage = () => {
   const dispatch = useDispatch()
   const { username } = useParams();
-  const user = useSelector(state => state.users[username])
 
+  const user = useSelector(state => state.users[username])
+  const currUser = useSelector(state => state.session.user)
+  const pictures = useSelector(state => state.pictures.allPictures)
+  let userPictures
+  if (user) {
+    userPictures = pictures.filter(picture => picture.userId === user.id)
+  }
   const [name, setName] = useState('')
   const [imageUrl, setImageUrl] = useState('')
-  const [modalBackground, setModalBackground] = useState(null)
+  const [modalBackground, setModalBackground] = useState(null);
 
   const pictureSubmit = (e) => {
     e.preventDefault()
@@ -34,19 +44,17 @@ const ProfilePage = () => {
     //   modalBackground.style.display = "none"
     // })
   }
-  React.useEffect(() => {
-    dispatch(getAllUsers())
-  }, [dispatch])
 
   React.useEffect(() => {
     const ele = document.getElementsByClassName('modalBackground')[0]
     setModalBackground(ele)
   }, [user])
 
+  React.useEffect(() => {
+    dispatch(getAllUsers())
+    dispatch(explorePictures())
+  }, [dispatch])
 
-  console.log(user)
-  // console.log(user.username)
-  if (user === undefined) return ("Not found")
 
   if (user) return (<div className="profilePageContainer">
     <div className="modalBackground">
@@ -74,14 +82,16 @@ const ProfilePage = () => {
       </div>
     </div>
     <div className="profileHeader">
-      <img src={user.profilePic} alt="avatar" />
+      <img id="avatar" src={user.profilePic} alt="avatar" />
       <h1>{user.username}</h1>
     </div>
     <div>
       <button onClick={() => handleClick()}>Upload Picture</button>
     </div>
+    <UserSongs userPictures={userPictures} />
   </div>)
-  // return ('loading')
+  return ("Loading")
+
 }
 
 
