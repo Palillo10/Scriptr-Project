@@ -20,12 +20,11 @@ router.get('/', asyncHandler(async (req, res) => {
 
 
 router.post('/', asyncHandler(async (req, res) => {
-  const { name, userId, imageUrl, description } = req.body
+  const { name, userId, imageUrl } = req.body
   const newPicture = await Picture.create({
     name,
     userId,
-    imageUrl,
-    description
+    imageUrl
   })
   res.json({ newPicture })
 }))

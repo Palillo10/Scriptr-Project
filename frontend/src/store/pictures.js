@@ -37,7 +37,7 @@ export const createPicture = (newPictureInfo) => async dispatch => {
     })
   })
 
-  const data = res.json();
+  const data = await res.json();
   dispatch(newPicture(data.newPicture))
 }
 
@@ -55,7 +55,7 @@ const picturesReducer = (state = initialState, action) => {
       newState.allPictures = action.pictures
       return newState;
     case CREATE_PICTURE:
-      return action.input
+      return state
     default:
       return state;
   }
