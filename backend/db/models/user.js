@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     profilePic: {
       type: DataTypes.STRING(255),
-      defaultValue: 'https://speckyboy.com/wp-content/uploads/2013/05/flickr_avatar_13.png'
+      defaultValue: 'https://speckyboy.com/wp-content/uploads/2013/05/flickr_avatar_03.png'
     },
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       defaultScope: {
         attributes: {
-          exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt', 'profilePic']
+          exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt']
         }
       },
       scopes: {
@@ -60,8 +60,8 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.prototype.toSafeObject = function () { // remember, this cannot be an arrow function
-    const { id, username, email } = this; // context will be the User instance
-    return { id, username, email };
+    const { id, username, email, profilePic } = this; // context will be the User instance
+    return { id, username, email, profilePic };
   };
 
   User.prototype.validatePassword = function (password) {

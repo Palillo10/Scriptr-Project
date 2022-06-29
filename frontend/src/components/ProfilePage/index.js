@@ -1,19 +1,31 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { explorePictures } from "../../store/pictures";
+import { getAllUsers } from "../../store/users";
+import './ProfilePage.css'
 const ProfilePage = () => {
   const dispatch = useDispatch()
-  const { userId } = useParams();
-  const pictures = useSelector(state => state.pictures)
-  let users = pictures.map(picture => picture.User.username.toLowerCase())
+  const { userUrl } = useParams();
+  const user = useSelector(state => state.users[userUrl[0]])
+
+  const handleClick = () => {
+    //create song
+  }
 
   React.useEffect(() => {
-    dispatch(explorePictures())
+    dispatch(getAllUsers())
   }, [dispatch])
 
-  if (users.includes(userId)) return ("hello")
-  else return ("Not found")
+  if (user) return (<>
+    <div className="profileHeader">
+      <img src={user.profilePic} alt="avatar" />
+      <h1>{user.username}</h1>
+    </div>
+    <div>
+      <button onClick={handleClick}>Upload Picture</button>
+    </div>
+  </>)
+  return ('loading')
 }
 
 

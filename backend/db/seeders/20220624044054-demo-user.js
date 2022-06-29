@@ -7,7 +7,8 @@ module.exports = {
       {
         email: 'demo@user.io',
         username: 'Demo-lition',
-        hashedPassword: bcrypt.hashSync('password')
+        hashedPassword: bcrypt.hashSync('password'),
+        profilePic: 'https://mario.wiki.gallery/images/thumb/a/a1/DMW-KingBobOmb.png/250px-DMW-KingBobOmb.png'
       },
       {
         email: 'user1@user.io',

@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 
-const GET_USERS = 'users/GET_USERS'
+const GET_USERS = 'users/getUsers'
 
 const getUsers = (users) => ({
   type: GET_USERS,

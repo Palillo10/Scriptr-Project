@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react';
 import { explorePictures } from '../../store/pictures';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import './ExplorePage.css'
 
 const ExplorePage = () => {
   const dispatch = useDispatch()
   const pictures = useSelector(state => state.pictures.allPictures)
-
-
-  const handleClick = () => {
-    //create song
-  }
 
   useEffect(() => {
     dispatch(explorePictures())
@@ -18,9 +14,9 @@ const ExplorePage = () => {
 
 
   return <div>
-    <button onClick={handleClick}>Upload Picture</button>
     {pictures.map((picture) => <div key={picture.id}>
-      <div>By: {picture.User.username}~~~~~~{picture.name}</div>
+      <div>
+        <NavLink to={`/people/${picture.User.id}${picture.User.username}`}>By: {picture.User.username}</NavLink>~~~~~~{picture.name}</div>
       <img className="images" src={`${picture.imageUrl}`} alt="hello" />
     </div>
     )}

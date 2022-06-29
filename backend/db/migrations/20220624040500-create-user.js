@@ -20,7 +20,7 @@ module.exports = {
       },
       profilePic: {
         type: Sequelize.STRING(255),
-        defaultValue: 'https://speckyboy.com/wp-content/uploads/2013/05/flickr_avatar_13.png'
+        defaultValue: 'https://speckyboy.com/wp-content/uploads/2013/05/flickr_avatar_03.png'
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
