@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { createPicture } from "../../store/pictures";
+import { createPicture } from "../../../store/pictures";
 
 
-const PictureModal = ({ user, currUser }) => {
+const UploadForm = ({ user, currUser }) => {
 
   const dispatch = useDispatch();
 
@@ -72,4 +72,4 @@ const PictureModal = ({ user, currUser }) => {
 }
 
 
-export default PictureModal
+export default UploadForm

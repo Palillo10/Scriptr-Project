@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { getAllUsers } from "../../store/users";
-import { createPicture, explorePictures } from "../../store/pictures";
+import { explorePictures } from "../../store/pictures";
 
 import UserSongs from "./UserSongs";
-import PictureModal from "./PictureModal";
+import UploadForm from "./ProfileModals/UploadForm";
 
 
 import './ProfilePage.css'
+// import DeleteWarning from "./ProfileModals.js/DeleteWarningModal";
+
 
 
 
@@ -42,7 +44,7 @@ const ProfilePage = () => {
       <img id="avatar" src={user.profilePic} alt="avatar" />
       <h1>{user.username}</h1>
     </div>
-    <PictureModal user={user} currUser={currUser} />
+    <UploadForm user={user} currUser={currUser} />
     <UserSongs userPictures={userPictures} user={user} currUser={currUser} />
   </div>)
 

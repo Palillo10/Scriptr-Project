@@ -26,6 +26,7 @@ const removePicture = (pictureId, pictures) => ({
 })
 
 export const deletePicture = (pictureId) => async dispatch => {
+  console.log(pictureId)
   const res = await csrfFetch(`/api/pictures/${pictureId}`, {
     method: 'DELETE'
   })
