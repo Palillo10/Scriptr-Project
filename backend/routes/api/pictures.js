@@ -35,13 +35,20 @@ router.post('/', asyncHandler(async (req, res) => {
 router.put('/:id', asyncHandler(async (req, res) => {
   const picture = await Picture.findByPk(req.params.id);
   const { name, description } = req.body
+  console.log(name)
   await picture.update({
     name,
     description
   });
-
   await picture.save();
-  res.json({ picture })
+
+
+  const pictures = await Picture.findAll({
+    include: User
+  });
+
+
+  res.json({ pictures, picture })
 }))
 
 router.delete('/:id', asyncHandler(async (req, res) => {
