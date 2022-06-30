@@ -2,7 +2,8 @@ import { csrfFetch } from "./csrf";
 
 const GET_PICTURES = 'pictures/getPictures';
 const CREATE_PICTURE = 'pictures/createPicture';
-const REMOVE_PICTURE = 'pictures/deletePicture'
+const REMOVE_PICTURE = 'pictures/deletePicture';
+const UPDATE_PICTURE = 'pictures/updatePicture'
 
 
 const getPictures = (pictures) => {
@@ -25,7 +26,30 @@ const removePicture = (pictureId, pictures) => ({
   pictures
 })
 
-export const deletePicture = (pictureId) => async dispatch => {
+const update = (picture, pictures) => {
+  return {
+    type: UPDATE_PICTURE,
+    picture,
+    pictures
+  }
+}
+
+
+export const updatePicture = (pictureId, pictureInfo) => async dispatch => {
+  const res = await csrfFetch(`/api/pictures/${pictureId}`, {
+    method: 'PUT',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(pictureInfo)
+  })
+
+  if (res.ok) {
+    const { pictures, picture } = await res.json();
+    dispatch(update(picture, pictures))
+    return picture
+  }
+}
+
+export const deletePicture = (pictureId, pictureInfo) => async dispatch => {
   const res = await csrfFetch(`/api/pictures/${pictureId}`, {
     method: 'DELETE'
   })
@@ -52,6 +76,7 @@ export const createPicture = (newPictureInfo) => async dispatch => {
   const { name, userId, imageUrl } = newPictureInfo
   const res = await csrfFetch('/api/pictures', {
     method: 'POST',
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       name,
       userId,
@@ -79,12 +104,16 @@ const picturesReducer = (state = initialState, action) => {
       newState.allPictures = action.pictures
       return newState;
     case CREATE_PICTURE:
-      newState[newPicture.id] = newPicture
+      newState[action.newPicture.id] = action.newPicture
       newState.allPictures = action.pictures
       return newState
     case REMOVE_PICTURE:
       delete newState[action.pictureId];
       console.log(action)
+      newState.allPictures = action.pictures;
+      return newState
+    case UPDATE_PICTURE:
+      newState[action.picture.id] = action.picture;
       newState.allPictures = action.pictures;
       return newState
     default:
