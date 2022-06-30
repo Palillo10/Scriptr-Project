@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { useState, useEffect } from "react";
 import { deletePicture } from "../../../store/pictures";
-
+import EditForm from "../EditForm";
 
 
 const DeleteWarning = ({ picture, user, currUser }) => {
@@ -40,6 +40,7 @@ const DeleteWarning = ({ picture, user, currUser }) => {
             deletePictureWarning.style.display = "flex";
             document.body.style.overflow = "hidden hidden"
           }}>Delete Picture</button>}
+      {currUser && currUser.username === user.username && <EditForm picture={picture} />}
     </div>
 
   </div >
