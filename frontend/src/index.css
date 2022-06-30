@@ -1,5 +1,8 @@
 /* TODO Add site wide styles */
 body {
-  /* overflow: hidden; */
+  /* overflow-x: hidden; */
+  /* overflow-y: hidden; */
+  width: 99.5vw;
+  height: 91vh;
   margin-bottom: 10px;
 }

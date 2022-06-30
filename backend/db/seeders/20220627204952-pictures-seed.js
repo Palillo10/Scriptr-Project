@@ -23,6 +23,7 @@ module.exports = {
         userId: 1,
         albumId: 1,
         imageUrl: 'https://code.visualstudio.com/assets/docs/languages/javascript/auto-import-after.png',
+        description: 'What a toasty view!!!',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -31,6 +32,7 @@ module.exports = {
         userId: 1,
         albumId: 2,
         imageUrl: 'https://forum-files-playcanvas-com.s3-eu-west-1.amazonaws.com/original/2X/b/bc8c1c0f10c896197ac9e90aee6666832e4f0baa.JPG',
+        description: "Sugar, we're going down swinging!",
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -39,6 +41,7 @@ module.exports = {
         userId: 2,
         albumId: 3,
         imageUrl: 'https://miro.medium.com/max/1400/1*1Ga5RoTKbLzQuGDw8EcqDg.png',
+        description: 'PYTHON TOO SLOW',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -46,6 +49,7 @@ module.exports = {
         name: 'Game Lighting',
         userId: 2,
         imageUrl: 'https://www.gamedesigning.org/wp-content/uploads/2020/08/Roblox-Scripting.jpg',
+        description: 'How do I fix this lighting?',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -53,6 +57,7 @@ module.exports = {
         name: 'Great job',
         userId: 3,
         imageUrl: 'https://www.tecmint.com/wp-content/uploads/2020/11/if-else-statement.png',
+        description: 'YOOOO great job',
         createdAt: new Date(),
         updatedAt: new Date()
       }

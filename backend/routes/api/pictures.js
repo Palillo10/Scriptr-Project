@@ -26,7 +26,10 @@ router.post('/', asyncHandler(async (req, res) => {
     userId,
     imageUrl
   })
-  res.json({ newPicture })
+  const pictures = await Picture.findAll({
+    include: User
+  });
+  res.json({ newPicture, pictures })
 }))
 
 router.put('/:id', asyncHandler(async (req, res) => {
@@ -44,7 +47,11 @@ router.put('/:id', asyncHandler(async (req, res) => {
 router.delete('/:id', asyncHandler(async (req, res) => {
   const picture = await Picture.findByPk(req.params.id);
   await picture.destroy();
-  res.json("deleted")
+
+  const pictures = await Picture.findAll({
+    include: User
+  });
+  return res.json({ pictures })
 }))
 
 

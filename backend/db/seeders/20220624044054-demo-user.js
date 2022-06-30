@@ -13,12 +13,14 @@ module.exports = {
       {
         email: 'user1@user.io',
         username: 'FakeUser1',
-        hashedPassword: bcrypt.hashSync('password2')
+        hashedPassword: bcrypt.hashSync('password2'),
+        profilePic: 'https://motivationalwizard.com/wp-content/uploads/2020/04/Fake-People-1024x682.jpg'
       },
       {
-        email: 'user2@user.io',
-        username: 'FakeUser2',
-        hashedPassword: bcrypt.hashSync('password3')
+        email: 'JoyBoy@user.io',
+        username: 'JoyBoy',
+        hashedPassword: bcrypt.hashSync('password3'),
+        profilePic: 'https://pbs.twimg.com/media/FPRlMgYXwAYB7Nj?format=jpg&name=small'
       }
     ], {});
   },
