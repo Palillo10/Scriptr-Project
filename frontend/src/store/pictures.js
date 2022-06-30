@@ -26,7 +26,6 @@ const removePicture = (pictureId, pictures) => ({
 })
 
 export const deletePicture = (pictureId) => async dispatch => {
-  console.log(pictureId)
   const res = await csrfFetch(`/api/pictures/${pictureId}`, {
     method: 'DELETE'
   })
@@ -85,7 +84,6 @@ const picturesReducer = (state = initialState, action) => {
       return newState
     case REMOVE_PICTURE:
       delete newState[action.pictureId];
-      console.log(action)
       newState.allPictures = action.pictures;
       return newState
     default:

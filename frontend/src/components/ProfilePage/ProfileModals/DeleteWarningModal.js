@@ -5,25 +5,32 @@ import { deletePicture } from "../../../store/pictures";
 
 
 const DeleteWarning = ({ picture, user, currUser }) => {
-  console.log(picture)
   const dispatch = useDispatch()
 
   const [deletePictureWarning, setDeletePictureWarning] = useState(null)
 
   useEffect(() => {
-    const ele = document.getElementsByClassName('warningBackground')[0]
+    const ele = document.getElementById(`BG${picture.id}`)
     setDeletePictureWarning(ele)
   }, [])
   return (<div>
-    <div className='warningBackground'>
+    <div className='warningBackground' id={`BG${picture.id}`}>
       <div className='deleteModal'>
+        <h3>Delete Picture</h3>
+        <h4>You cannot reverse this action. Are you sure you want to delete this picture?</h4>
         <button
           onClick={() => {
             deletePictureWarning.style.display = 'none';
             document.body.style.overflow = "hidden scroll"
           }}
         >X</button>
-        <button onClick={() => dispatch(deletePicture(picture.id))}>Confirm</button>
+        <button onClick={() => {
+          deletePictureWarning.style.display = 'none';
+          document.body.style.overflow = "hidden scroll"
+          dispatch(deletePicture(picture.id)
+          )
+        }
+        }>Delete</button>
       </div>
     </div>
     <div>{picture.description}
