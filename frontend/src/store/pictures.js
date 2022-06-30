@@ -109,7 +109,6 @@ const picturesReducer = (state = initialState, action) => {
       return newState
     case REMOVE_PICTURE:
       delete newState[action.pictureId];
-      console.log(action)
       newState.allPictures = action.pictures;
       return newState
     case UPDATE_PICTURE:
