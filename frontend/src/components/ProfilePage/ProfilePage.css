@@ -4,8 +4,15 @@
 }
 
 .profileImages {
-  width: 550px;
-  height: 300px;
+  width: 30%;
+  height: 10%;
+  margin-bottom: 2%;
+  margin-top: 1%;
+  border: 1px solid black;
+}
+
+.imageBoxes {
+  border: 1px solid black;
 }
 
 .profileHeader {
@@ -19,9 +26,9 @@ h1 {
 
 .profilePageContainer {
   /* padding: 5px; */
-  /* border: 1px solid black; */
-  width: 99.5vw;
-  height: 91vh;
+  border: 1px solid black;
+  width: 100%;
+  height: 100%;
   /* overflow: scroll;
   overflow-x: hidden; */
 }
@@ -46,4 +53,10 @@ h1 {
   width: 40vw;
   height: 75vh;
   background-color: white;
+}
+
+
+.deleteButtons {
+  position: relative;
+  right: -15%;
 }

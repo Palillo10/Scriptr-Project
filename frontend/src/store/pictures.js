@@ -1,7 +1,8 @@
 import { csrfFetch } from "./csrf";
 
 const GET_PICTURES = 'pictures/getPictures';
-const CREATE_PICTURE = 'pictures/createPicture'
+const CREATE_PICTURE = 'pictures/createPicture';
+const REMOVE_PICTURE = 'pictures/deletePicture'
 
 
 const getPictures = (pictures) => {
@@ -11,19 +12,40 @@ const getPictures = (pictures) => {
   }
 }
 
-const newPicture = (input) => {
+const newPicture = (newPicture, pictures) => {
   return {
     type: CREATE_PICTURE,
-    input
+    newPicture,
+    pictures
   }
+}
+const removePicture = (pictureId, pictures) => ({
+  type: REMOVE_PICTURE,
+  pictureId,
+  pictures
+})
+
+export const deletePicture = (pictureId) => async dispatch => {
+  const res = await csrfFetch(`/api/pictures/${pictureId}`, {
+    method: 'DELETE'
+  })
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(removePicture(pictureId, data.pictures))
+  }
+
+
 }
 
 export const explorePictures = () => async (dispatch) => {
   const res = await csrfFetch('/api/pictures')
 
-  const data = await res.json();
-  dispatch(getPictures(data.pictures))
-  return res
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(getPictures(data.pictures))
+    return res
+  }
 }
 
 export const createPicture = (newPictureInfo) => async dispatch => {
@@ -37,8 +59,10 @@ export const createPicture = (newPictureInfo) => async dispatch => {
     })
   })
 
-  const data = await res.json();
-  dispatch(newPicture(data.newPicture))
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(newPicture(data.newPicture, data.pictures))
+  }
 }
 
 const initialState = {
@@ -55,7 +79,14 @@ const picturesReducer = (state = initialState, action) => {
       newState.allPictures = action.pictures
       return newState;
     case CREATE_PICTURE:
-      return state
+      newState[newPicture.id] = newPicture
+      newState.allPictures = action.pictures
+      return newState
+    case REMOVE_PICTURE:
+      delete newState[action.pictureId];
+      console.log(action)
+      newState.allPictures = action.pictures;
+      return newState
     default:
       return state;
   }

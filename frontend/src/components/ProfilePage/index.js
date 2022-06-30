@@ -12,16 +12,26 @@ const ProfilePage = () => {
   const dispatch = useDispatch()
   const { username } = useParams();
 
+
   const user = useSelector(state => state.users[username])
   const currUser = useSelector(state => state.session.user)
   const pictures = useSelector(state => state.pictures.allPictures)
+
+
   let userPictures
   if (user) {
     userPictures = pictures.filter(picture => picture.userId === user.id)
   }
+
+
+
   const [name, setName] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [modalBackground, setModalBackground] = useState(null);
+  // const [doneLoading, setDoneLoading] = useState(false)
+
+
+
 
   const pictureSubmit = (e) => {
     e.preventDefault()
@@ -45,6 +55,8 @@ const ProfilePage = () => {
     // })
   }
 
+
+
   React.useEffect(() => {
     const ele = document.getElementsByClassName('modalBackground')[0]
     setModalBackground(ele)
@@ -54,6 +66,19 @@ const ProfilePage = () => {
     dispatch(getAllUsers())
     dispatch(explorePictures())
   }, [dispatch])
+
+
+
+  // React.useEffect(() => {
+  //   let func = async () => {
+  //     console.log('func')
+  //     return await setDoneLoading(true)
+  //   }
+  //   func()
+  // }, [])
+  // if (!doneLoading) return ("Loading")
+  // if (doneLoading && !user) return ("Not Found")
+
 
 
   if (user) return (<div className="profilePageContainer">
@@ -86,11 +111,12 @@ const ProfilePage = () => {
       <h1>{user.username}</h1>
     </div>
     <div>
-      <button onClick={() => handleClick()}>Upload Picture</button>
+      {currUser && currUser.username === user.username && <button onClick={() => handleClick()}>Upload Picture</button>}
     </div>
-    <UserSongs userPictures={userPictures} />
+    <UserSongs userPictures={userPictures} user={user} currUser={currUser} />
   </div>)
-  return ("Loading")
+
+  return ("loading")
 
 }
 
