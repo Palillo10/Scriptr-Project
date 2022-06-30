@@ -22,7 +22,6 @@ const EditForm = ({ picture }) => {
 
     let res = await dispatch(updatePicture(picture.id, pictureInfo))
     if (res) {
-      console.log(res)
       setShowEdit(false)
       setEditName(res.name)
       setDescription(res.description)
