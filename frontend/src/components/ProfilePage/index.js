@@ -12,6 +12,7 @@ import ProfileAbout from "./ProfileRoutes/About";
 
 
 import './ProfilePage.css'
+import SingleAlbum from "./ProfileRoutes/SingleAlbum";
 // import DeleteWarning from "./ProfileModals.js/DeleteWarningModal";
 
 
@@ -63,6 +64,9 @@ const ProfilePage = () => {
     </Route>
     <Route exact path="/people/:username/albums">
       <Albums user={user} />
+    </Route>
+    <Route exact path="/people/:username/albums/:id">
+      <SingleAlbum />
     </Route>
   </div>)
 
