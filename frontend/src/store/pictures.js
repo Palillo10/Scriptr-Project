@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf";
 const GET_PICTURES = 'pictures/getPictures';
 const CREATE_PICTURE = 'pictures/createPicture';
 const REMOVE_PICTURE = 'pictures/deletePicture';
-const UPDATE_PICTURE = 'pictures/updatePicture'
+const UPDATE_PICTURE = 'pictures/update'
 
 
 const getPictures = (pictures) => {

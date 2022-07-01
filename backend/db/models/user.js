@@ -34,7 +34,12 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [60, 60]
       }
-    }
+    },
+    bio: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      defaultValue: "Write a little about yourself."
+    },
   },
     {
       defaultScope: {

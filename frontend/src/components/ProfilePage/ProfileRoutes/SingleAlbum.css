@@ -1,0 +1,22 @@
+.pictureImage {
+  height: 300px;
+  width: 500px;
+  margin: 25px;
+}
+
+.albumPictures {
+  border: 1px black solid;
+}
+
+.CoverImageContainer {
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.CoverImage {
+  height: 450px;
+  width: 450px;
+}

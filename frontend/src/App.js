@@ -17,15 +17,14 @@ function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state.session.user)
-  const history = useHistory()
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     // dispatch(getAllUsers())
-    // dispatch(explorePictures())
+    dispatch(explorePictures())
   }, [dispatch]);
+  // if (isLoaded && !user) return <Redirect to="/" />
 
-
-  // if (!user) return <Redirect to="/" />
   return (
     <>
       <Navigation isLoaded={isLoaded} />
@@ -41,7 +40,7 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/people/:username" >
+          <Route path="/people/:username" >
             <ProfilePage />
           </Route>
         </Switch>

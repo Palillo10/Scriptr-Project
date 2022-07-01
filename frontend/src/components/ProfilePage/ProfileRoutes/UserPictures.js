@@ -1,9 +1,14 @@
-import DeleteWarning from "./ProfileModals/DeleteWarningModal";
+import DeleteWarning from "../ProfileModals/DeleteWarningModal";
+import { useSelector } from "react-redux";
+
+const UserPictures = ({ currUser, user }) => {
+  const pictures = useSelector(state => state.pictures.allPictures)
 
 
-
-const UserSongs = ({ userPictures, currUser, user }) => {
-
+  let userPictures
+  if (user) {
+    userPictures = pictures.filter(picture => picture.userId === user.id)
+  }
 
   return (<div>
     {userPictures?.map(picture => {
@@ -20,4 +25,4 @@ const UserSongs = ({ userPictures, currUser, user }) => {
 
 
 
-export default UserSongs
+export default UserPictures
