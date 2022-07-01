@@ -1,12 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Route, NavLink, Redirect } from "react-router-dom";
 
 import { getAllUsers } from "../../store/users";
 import { explorePictures } from "../../store/pictures";
 
-import UserSongs from "./UserSongs";
+import UserPictures from "./ProfileRoutes/UserPictures";
 import UploadForm from "./ProfileModals/UploadForm";
+import Albums from "./ProfileRoutes/Albums"
+import ProfileAbout from "./ProfileRoutes/About";
 
 
 import './ProfilePage.css'
@@ -22,18 +24,11 @@ const ProfilePage = () => {
 
   const user = useSelector(state => state.users[username])
   const currUser = useSelector(state => state.session.user)
-  const pictures = useSelector(state => state.pictures.allPictures)
-
-
-  let userPictures
-  if (user) {
-    userPictures = pictures.filter(picture => picture.userId === user.id)
-  }
 
 
   React.useEffect(() => {
     dispatch(getAllUsers())
-    dispatch(explorePictures())
+    // dispatch(explorePictures())
   }, [dispatch])
 
 
@@ -44,8 +39,31 @@ const ProfilePage = () => {
       <img id="avatar" src={user.profilePic} alt="avatar" />
       <h1>{user.username}</h1>
     </div>
-    <UploadForm user={user} currUser={currUser} />
-    <UserSongs userPictures={userPictures} user={user} currUser={currUser} />
+    <div className="profileNavbar">
+      <div>
+        <NavLink to={`/people/${user.username}/about`}>About</NavLink>
+      </div>
+      <div>
+        <NavLink to={`/people/${user.username}/photostream`}>Photostream</NavLink>
+      </div>
+      <div>
+        <NavLink to={`/people/${user.username}/albums`}>Albums</NavLink>
+      </div>
+
+    </div>
+    <Route exact path="/people/:username" >
+      <Redirect to={`/people/${user.username}/about`} />
+    </Route>
+    <Route exact path="/people/:username/about">
+      <ProfileAbout />
+    </Route>
+    <Route exact path="/people/:username/photostream">
+      <UserPictures user={user} currUser={currUser} />
+      <UploadForm user={user} currUser={currUser} />
+    </Route>
+    <Route exact path="/people/:username/albums">
+      <Albums user={user} />
+    </Route>
   </div>)
 
   return ("loading")

@@ -23,9 +23,8 @@ function App() {
     // dispatch(getAllUsers())
     // dispatch(explorePictures())
   }, [dispatch]);
+  // if (isLoaded && !user) return <Redirect to="/" />
 
-
-  // if (!user) return <Redirect to="/" />
   return (
     <>
       <Navigation isLoaded={isLoaded} />
@@ -41,7 +40,7 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/people/:username" >
+          <Route path="/people/:username" >
             <ProfilePage />
           </Route>
         </Switch>
