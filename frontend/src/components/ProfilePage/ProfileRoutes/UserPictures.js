@@ -1,10 +1,7 @@
 import DeleteWarning from "../ProfileModals/DeleteWarningModal";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { explorePictures } from "../../../store/pictures";
+import { useSelector } from "react-redux";
 
 const UserPictures = ({ currUser, user }) => {
-  const dispatch = useDispatch()
   const pictures = useSelector(state => state.pictures.allPictures)
 
 
@@ -12,10 +9,6 @@ const UserPictures = ({ currUser, user }) => {
   if (user) {
     userPictures = pictures.filter(picture => picture.userId === user.id)
   }
-
-  useEffect(() => {
-    dispatch(explorePictures())
-  }, [dispatch])
 
   return (<div>
     {userPictures?.map(picture => {

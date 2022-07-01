@@ -9,11 +9,11 @@ import UserPictures from "./ProfileRoutes/UserPictures";
 import UploadForm from "./ProfileModals/UploadForm";
 import Albums from "./ProfileRoutes/Albums"
 import ProfileAbout from "./ProfileRoutes/About";
+import { getAlbums } from "../../store/albums";
 
 
 import './ProfilePage.css'
 import SingleAlbum from "./ProfileRoutes/SingleAlbum";
-// import DeleteWarning from "./ProfileModals.js/DeleteWarningModal";
 
 
 
@@ -29,7 +29,7 @@ const ProfilePage = () => {
 
   React.useEffect(() => {
     dispatch(getAllUsers())
-    // dispatch(explorePictures())
+    dispatch(getAlbums())
   }, [dispatch])
 
 
@@ -65,8 +65,8 @@ const ProfilePage = () => {
     <Route exact path="/people/:username/albums">
       <Albums user={user} />
     </Route>
-    <Route exact path="/people/:username/albums/:id">
-      <SingleAlbum />
+    <Route exact path="/people/:username/albums/:albumId">
+      <SingleAlbum user={user} />
     </Route>
   </div>)
 
