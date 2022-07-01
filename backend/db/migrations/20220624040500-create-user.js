@@ -26,6 +26,11 @@ module.exports = {
         type: Sequelize.STRING.BINARY,
         allowNull: false
       },
+      bio: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+        defaultValue: "Write a little about yourself."
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
