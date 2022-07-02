@@ -14,7 +14,7 @@ const UploadForm = ({ user, currUser }) => {
   useEffect(() => {
     const ele = document.getElementsByClassName('modalBackground')[0]
     setModalBackground(ele)
-  }, [user])
+  }, [])
 
 
   const pictureSubmit = (e) => {
@@ -40,35 +40,37 @@ const UploadForm = ({ user, currUser }) => {
   }
 
 
-  return (<div>
-    <div className="modalBackground">
-      <div className="modal">
-        <button onClick={() => modalBackground.style.display = "none"}>X</button>
-        <fieldset>
-          <form onSubmit={pictureSubmit}>
-            <div>
-              <label htmlFor="name">Name </label>
-              <input type="text" id="name"
-                value={name}
-                onChange={e => setName(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="imageUrl">Picture URL </label>
-              <input type="text" id="imageUrl"
-                value={imageUrl}
-                onChange={e => setImageUrl(e.target.value)}
-              />
-            </div>
-            <button>Upload</button>
-          </form>
-        </fieldset>
-      </div>
-    </div>
+  return (<>
     <div>
       {currUser && currUser.username === user.username && <button onClick={() => handleClick()}>Upload Picture</button>}
     </div>
-  </div>)
+    <div>
+      <div className="modalBackground">
+        <div className="modal">
+          <button onClick={() => modalBackground.style.display = "none"}>X</button>
+          <fieldset>
+            <form onSubmit={pictureSubmit}>
+              <div>
+                <label htmlFor="name">Name </label>
+                <input type="text" id="name"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="imageUrl">Picture URL </label>
+                <input type="text" id="imageUrl"
+                  value={imageUrl}
+                  onChange={e => setImageUrl(e.target.value)}
+                />
+              </div>
+              <button>Upload</button>
+            </form>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </>)
 }
 
 

@@ -8,8 +8,9 @@ const SingleAlbum = ({ user }) => {
     let stateKey = `BELONGS-TO-${user.username}`
     if (state.albums[stateKey] && user) return state.albums[stateKey][albumId]
   })
+
   if (!album) return "loading"
-  console.log(album.Pictures)
+
   return (<div>
     <div className="CoverImageContainer">
       <h2>{album.name}</h2>

@@ -33,16 +33,20 @@ const albumsReducer = (state = initialState, action) => {
     case GET_ALBUMS:
       action.albums.forEach(album => {
         let stateKey = `BELONGS-TO-${album.User.username}`
-        let id = album.id
         if (!newState[stateKey]) {
           newState[stateKey] = {}
         }
-        newState[stateKey][id] = album
+        newState[stateKey][album.id] = album
 
       })
       return newState
     case CREATE_ALBUM:
-
+      let stateKey = `BELONGS-TO-${action.newAlbum.User.username}`
+      if (!newState[stateKey]) {
+        newState[stateKey] = {}
+      }
+      newState[stateKey][action.newAlbum.id] = action.newAlbum
+      return newState
     case UPDATE_ALBUM:
 
     case DELETE_ALBUM:
@@ -58,6 +62,24 @@ export const getAlbums = () => async dispatch => {
   if (res.ok) {
     const albums = await res.json()
     dispatch(load(albums))
+  }
+}
+
+export const createAlbum = ({ albumName, coverImage, userId }) => async dispatch => {
+  const res = await csrfFetch('/api/albums', {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: albumName,
+      coverImage,
+      userId
+    })
+  })
+
+  if (res.ok) {
+    const newAlbum = await res.json()
+    console.log(newAlbum)
+    dispatch(create(newAlbum))
   }
 }
 
