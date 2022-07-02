@@ -17,11 +17,17 @@ router.get('/', asyncHandler(async (req, res) => {
 
 router.post('/', asyncHandler(async (req, res) => {
   const { name, userId, coverImage } = req.body
-  const newAlbum = await Album.create({
+  await Album.create({
     name,
     userId,
     coverImage
   });
+
+
+  const newAlbum = await Album.findOne({
+    order: [['id', 'DESC']],
+    include: [User, Picture]
+  })
 
   res.json(newAlbum)
 

@@ -12,7 +12,9 @@ const DeleteWarning = ({ picture, user, currUser }) => {
   useEffect(() => {
     const ele = document.getElementById(`BG${picture.id}`)
     setDeletePictureWarning(ele)
-  }, [])
+  }, [picture.id])
+
+
   return (<div>
     <div className='warningBackground' id={`BG${picture.id}`}>
       <div className='deleteModal'>
