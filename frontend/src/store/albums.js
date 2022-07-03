@@ -48,7 +48,9 @@ const albumsReducer = (state = initialState, action) => {
       newState[stateKey][action.newAlbum.id] = action.newAlbum
       return newState
     case UPDATE_ALBUM:
-
+      let updateStateKey = `BELONGS-TO-${action.album.User.username}`
+      newState[updateStateKey][action.album.id] = action.album
+      return newState
     case DELETE_ALBUM:
 
     default:
@@ -78,11 +80,24 @@ export const createAlbum = ({ albumName, coverImage, userId }) => async dispatch
 
   if (res.ok) {
     const newAlbum = await res.json()
-    console.log(newAlbum)
     dispatch(create(newAlbum))
   }
 }
 
+export const updateAlbum = ({ albumId, albumName, albumImageUrl }) => async dispatch => {
+  const res = await csrfFetch(`/api/albums/${albumId}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      name: albumName,
+      coverImage: albumImageUrl
+    })
+  })
+
+  if (res.ok) {
+    const album = await res.json();
+    dispatch(update(album))
+  }
+}
 
 
 export default albumsReducer
