@@ -23,8 +23,8 @@ function App() {
     // dispatch(getAllUsers())
     dispatch(explorePictures())
   }, [dispatch]);
-  // if (isLoaded && !user) return <Redirect to="/" />
 
+  // {isLoaded && !user && <Redirect to="/" />}
   return (
     <>
       <Navigation isLoaded={isLoaded} />

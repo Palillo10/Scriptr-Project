@@ -59,8 +59,8 @@ const ProfilePage = () => {
       <ProfileAbout />
     </Route>
     <Route exact path="/people/:username/photostream">
-      <UserPictures user={user} currUser={currUser} />
       <UploadForm user={user} currUser={currUser} />
+      <UserPictures user={user} currUser={currUser} />
     </Route>
     <Route exact path="/people/:username/albums">
       <Albums user={user} />

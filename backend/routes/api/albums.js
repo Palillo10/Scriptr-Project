@@ -34,7 +34,7 @@ router.post('/', asyncHandler(async (req, res) => {
 }))
 
 router.put('/:id', asyncHandler(async (req, res) => {
-  const album = await Album.findByPk(req.params.id)
+  const album = await Album.findByPk(req.params.id, { include: [User, Picture] })
   const { name, coverImage } = req.body
 
   await album.update({
