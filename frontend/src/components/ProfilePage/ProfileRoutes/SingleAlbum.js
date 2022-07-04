@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import "./SingleAlbum.css"
 import { updateAlbum } from "../../../store/albums"
+import AddToAlbum from "./AddToAlbum"
 
 const SingleAlbum = ({ user }) => {
   const dispatch = useDispatch()
@@ -10,16 +11,13 @@ const SingleAlbum = ({ user }) => {
   const [imageInput, setImageInput] = useState(false)
   const [albumName, setAlbumName] = useState('')
   const [albumImageUrl, setAlbumImageUrl] = useState('')
+  const [addToAlbumForm, setAddToAlbumForm] = useState(false)
   const album = useSelector(state => {
     let stateKey = `BELONGS-TO-${user.username}`
     if (state.albums[stateKey] && user) return state.albums[stateKey][albumId]
   })
 
   if (!album) return "loading"
-  // if (album) {
-  //   setAlbumImageUrl(album.coverImage)
-  //   setAlbumName(album.name)
-  // }
   const handleSubmit = async (e) => {
     e.preventDefault()
     const updatedAlbum = {
@@ -31,11 +29,15 @@ const SingleAlbum = ({ user }) => {
     setImageInput(!imageInput)
   }
 
+  const add = () => {
+    setAddToAlbumForm(!addToAlbumForm)
+  }
 
   return (<div>
     <div >
       <div className="CoverImageContainer">
-        <button>Add To Album</button>
+        <button onClick={add}>Add To Album</button>
+        {addToAlbumForm && <AddToAlbum user={user} />}
 
         < img onClick={() => {
           setAlbumImageUrl(album.coverImage)

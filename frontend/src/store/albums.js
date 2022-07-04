@@ -4,6 +4,7 @@ const GET_ALBUMS = 'albums/GET_ALBUMS'
 const CREATE_ALBUM = 'albums/CREATE_ALBUM'
 const UPDATE_ALBUM = 'albums/UPDATE_ALBUM'
 const DELETE_ALBUM = 'albums/DELETE_ALBUM'
+const ADD_TO_ALBUM = 'albums/ADD_TO_ALBUM'
 
 const load = (albums) => ({
   type: GET_ALBUMS,
@@ -51,6 +52,8 @@ const albumsReducer = (state = initialState, action) => {
       let updateStateKey = `BELONGS-TO-${action.album.User.username}`
       newState[updateStateKey][action.album.id] = action.album
       return newState
+    case ADD_TO_ALBUM:
+
     case DELETE_ALBUM:
 
     default:
