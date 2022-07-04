@@ -9,7 +9,7 @@ const { User, Picture, Album } = require('../../db/models');
 const router = express.Router()
 
 router.get('/', asyncHandler(async (req, res) => {
-  const albums = await Album.findAll({ include: [User, Picture] })
+  const albums = await Album.findAll({ include: [User, { model: Picture, include: User }] })
 
   res.json(albums)
 }))

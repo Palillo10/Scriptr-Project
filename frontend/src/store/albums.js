@@ -10,6 +10,11 @@ const load = (albums) => ({
   type: GET_ALBUMS,
   albums
 })
+export const add = (album, picture) => ({
+  type: ADD_TO_ALBUM,
+  album,
+  picture
+})
 
 const create = (newAlbum) => ({
   type: CREATE_ALBUM,
@@ -47,13 +52,18 @@ const albumsReducer = (state = initialState, action) => {
         newState[stateKey] = {}
       }
       newState[stateKey][action.newAlbum.id] = action.newAlbum
+      console.log("hello")
       return newState
     case UPDATE_ALBUM:
       let updateStateKey = `BELONGS-TO-${action.album.User.username}`
       newState[updateStateKey][action.album.id] = action.album
       return newState
     case ADD_TO_ALBUM:
+      let addStatekey = `BELONGS-TO-${action.album.User.username}`
+      action.picture.albumId = action.album.id
+      newState[addStatekey][action.album.id].Pictures.push(action.picture)
 
+      return newState
     case DELETE_ALBUM:
 
     default:

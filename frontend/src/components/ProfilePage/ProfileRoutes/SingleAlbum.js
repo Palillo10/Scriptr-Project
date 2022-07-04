@@ -11,13 +11,15 @@ const SingleAlbum = ({ user }) => {
   const [imageInput, setImageInput] = useState(false)
   const [albumName, setAlbumName] = useState('')
   const [albumImageUrl, setAlbumImageUrl] = useState('')
-  const [addToAlbumForm, setAddToAlbumForm] = useState(false)
+
   const album = useSelector(state => {
     let stateKey = `BELONGS-TO-${user.username}`
     if (state.albums[stateKey] && user) return state.albums[stateKey][albumId]
   })
 
   if (!album) return "loading"
+
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     const updatedAlbum = {
@@ -29,15 +31,13 @@ const SingleAlbum = ({ user }) => {
     setImageInput(!imageInput)
   }
 
-  const add = () => {
-    setAddToAlbumForm(!addToAlbumForm)
-  }
+
 
   return (<div>
     <div >
       <div className="CoverImageContainer">
-        <button onClick={add}>Add To Album</button>
-        {addToAlbumForm && <AddToAlbum user={user} />}
+        {/* <button onClick={add}>Add To Album</button> */}
+        <AddToAlbum album={album} user={user} />
 
         < img onClick={() => {
           setAlbumImageUrl(album.coverImage)
@@ -101,7 +101,7 @@ const SingleAlbum = ({ user }) => {
       <h2>Album Pictures</h2>
       {album.Pictures.map(picture => {
         return (
-          <img className="pictureImage" key={picture.id} src={`${picture.imageUrl}`} />)
+          <img className="pictureImage" key={picture.id} src={`${picture.imageUrl}`} alt="user posts" />)
       })}
     </div>
   </div >)
