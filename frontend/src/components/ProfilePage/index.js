@@ -38,36 +38,38 @@ const ProfilePage = () => {
   if (user) return (<div className="profilePageContainer">
     <div className="profileHeader">
       <img id="avatar" src={user.profilePic} alt="avatar" />
-      <h1>{user.username}</h1>
+      <h1 id="Username">{user.username}</h1>
     </div>
     <div className="profileNavbar">
-      <div>
+      {/* <div>
         <NavLink to={`/people/${user.username}/about`}>About</NavLink>
-      </div>
+      </div> */}
       <div>
         <NavLink to={`/people/${user.username}/photostream`}>Photostream</NavLink>
       </div>
       <div>
         <NavLink to={`/people/${user.username}/albums`}>Albums</NavLink>
       </div>
-
     </div>
-    <Route exact path="/people/:username" >
-      <Redirect to={`/people/${user.username}/about`} />
-    </Route>
-    <Route exact path="/people/:username/about">
-      <ProfileAbout />
-    </Route>
-    <Route exact path="/people/:username/photostream">
-      <UploadForm user={user} currUser={currUser} />
-      <UserPictures user={user} currUser={currUser} />
-    </Route>
-    <Route exact path="/people/:username/albums">
-      <Albums user={user} />
-    </Route>
-    <Route exact path="/people/:username/albums/:albumId">
-      <SingleAlbum user={user} />
-    </Route>
+    <div className="profilePageContent">
+      <Route exact path="/people/:username" >
+        <Redirect to={`/people/${user.username}/photostream`} />
+      </Route>
+      <Route exact path="/people/:username/about">
+        <ProfileAbout />
+      </Route>
+      <Route exact path="/people/:username/photostream">
+        <UploadForm user={user} currUser={currUser} />
+        <UserPictures user={user} currUser={currUser} />
+      </Route>
+      <Route exact path="/people/:username/albums">
+        <Albums user={user} />
+      </Route>
+      <Route exact path="/people/:username/albums/:albumId">
+        <SingleAlbum user={user} />
+      </Route>
+    </div>
+
   </div>)
 
   return ("loading")

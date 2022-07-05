@@ -23,12 +23,12 @@ const DeleteWarning = ({ picture, user, currUser }) => {
         <button
           onClick={() => {
             deletePictureWarning.style.display = 'none';
-            document.body.style.overflow = "hidden scroll"
+            // document.body.style.overflow = "hidden scroll"
           }}
         >X</button>
         <button onClick={() => {
           deletePictureWarning.style.display = 'none';
-          document.body.style.overflow = "hidden scroll"
+          // document.body.style.overflow = "hidden scroll"
           dispatch(deletePicture(picture.id)
           )
         }
@@ -40,7 +40,7 @@ const DeleteWarning = ({ picture, user, currUser }) => {
         <button className="deleteButtons"
           onClick={() => {
             deletePictureWarning.style.display = "flex";
-            document.body.style.overflow = "hidden hidden"
+            // document.body.style.overflow = "hidden hidden"
           }}>Delete Picture</button>}
       {currUser && currUser.username === user.username && <EditForm picture={picture} />}
     </div>

@@ -1,22 +1,42 @@
 .pictureImage {
-  height: 300px;
-  width: 500px;
-  margin: 25px;
+  height: 325px;
+  max-width: 1000px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 2px solid black;
+}
+
+.albumPicturesContainer {
+  /* border: 1px black solid; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .albumPictures {
-  border: 1px black solid;
+  /* border: 1px solid black; */
+  width: 90vw;
 }
 
 .CoverImageContainer {
+  position: relative;
   border: 3px solid black;
   display: flex;
   /* flex-direction: column; */
   align-items: center;
   justify-content: center;
+  height: 20vh;
+}
+
+.coverImageBackground {
+  position: absolute;
+  /* border: 3px solid orange; */
+  height: 100%;
+  width: 100%
 }
 
 .CoverImage {
-  height: 450px;
-  width: 450px;
+  height: 50px;
+  width: 50px;
 }

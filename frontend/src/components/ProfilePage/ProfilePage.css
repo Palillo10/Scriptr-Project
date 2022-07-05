@@ -1,14 +1,16 @@
 .profileNavbar {
   display: flex;
-  border: 1px solid black;
-  height: 35px;
+  border: 1px solid rgb(1, 173, 173);
+  height: 3vh;
 
 }
 
 #avatar {
-  width: 100px;
-  height: 100px
+  width: 8vh;
+  height: 8vh
 }
+
+
 
 .profileImages {
   width: 30%;
@@ -23,26 +25,28 @@
 }
 
 .profileHeader {
-  border-bottom: 3px solid black;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  border-bottom: 3px solid rgb(1, 173, 173);
+  background-image: url("https://www.watelectronics.com/wp-content/uploads/different-programming-languages.png");
+  background-repeat: repeat-y;
+  background-position: 70%;
+  background-size: 20%;
 }
 
-h1 {
-  margin-bottom: 10px;
-}
-
-.profilePageContainer {
-  /* padding: 5px; */
-  border: 1px solid black;
-  width: 100%;
-  height: 100%;
-  /* overflow: scroll;
-  overflow-x: hidden; */
+.profilePageContent {
+  /* border: red 2px solid; */
+  overflow-y: scroll;
+  min-height: 75vh;
+  max-height: 75vh;
 }
 
 
 .modalBackground {
   display: none;
-  overflow-x: none;
+  overflow: hidden;
   border: 1px solid black;
   background-color: rgb(0, 0, 0, .4);
   position: absolute;
@@ -56,8 +60,8 @@ h1 {
 }
 
 .modal {
-  width: 40vw;
-  height: 75vh;
+  width: 650px;
+  height: 500px;
   background-color: white;
 }
 
@@ -84,7 +88,7 @@ h1 {
 }
 
 .deleteModal {
-  width: 40vw;
-  height: 15vh;
+  width: 750px;
+  height: 125px;
   background-color: rgb(245, 245, 245);
 }

@@ -7,8 +7,8 @@
 .profileButton {
   border-radius: 55%;
   border: black 3px solid;
-  width: 50px;
-  height: 50px;
+  width: 5vh;
+  height: 5vh;
   padding: 2px
 }
 
@@ -18,4 +18,14 @@
   /* justify-content: space-between; */
   align-items: center;
   margin-bottom: 10px;
+  height: 5vh;
+}
+
+.allAlbumsContainer {
+  overflow: hidden;
+  /* border: 3px solid greenyellow; */
+  max-width: 45vw;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }

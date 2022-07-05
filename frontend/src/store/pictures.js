@@ -1,3 +1,4 @@
+import { getAlbums } from "./albums";
 import { csrfFetch } from "./csrf";
 
 const GET_PICTURES = 'pictures/getPictures';
@@ -57,6 +58,7 @@ export const deletePicture = (pictureId, pictureInfo) => async dispatch => {
   if (res.ok) {
     const data = await res.json();
     dispatch(removePicture(pictureId, data.pictures))
+    dispatch(getAlbums())
   }
 
 

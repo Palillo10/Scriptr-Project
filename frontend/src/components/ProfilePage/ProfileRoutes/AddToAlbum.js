@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./AddToAlbumForm.css"
-import { add } from "../../../store/albums"
+import { add, addPictureToAlbum } from "../../../store/albums"
+import { explorePictures } from "../../../store/pictures"
 
 
 const AddToAlbum = ({ user, album }) => {
@@ -14,15 +15,25 @@ const AddToAlbum = ({ user, album }) => {
     userPictures = pictures.filter(picture => picture.userId === user.id)
   }
 
-  const addPicture = () => {
-    dispatch(add(album, examplePic))
+  const addPicture = async () => {
+    await dispatch(addPictureToAlbum(album, examplePic))
+    setExamplePic({ imageUrl: "https://cdnblog.picsart.com/2021/12/mid-post-3.jpg" })
+    setAddToAlbumForm(false)
   }
 
-  return (<> <button onClick={() => setAddToAlbumForm(true)}>Add To Album</button>
+
+  return (<> <button className="openFormButton" onClick={() => setAddToAlbumForm(true)}>
+    <i className="fas thin fa-plus" />
+    {/* <i className="fas fa-user-circle" /> */}
+    Add To Album</button>
     {addToAlbumForm && <div className="AddToAlbumBackground">
       <div className="AddToAlbumModal">
         <div className="Top">
-          <button className="cancelButton" onClick={() => setAddToAlbumForm(false)}>X</button>
+          <button className="cancelButton" onClick={() => {
+            setAddToAlbumForm(false)
+            setExamplePic({ imageUrl: "https://cdnblog.picsart.com/2021/12/mid-post-3.jpg" })
+          }
+          }>X</button>
           <button className="addButton" onClick={addPicture}>Add To  "{album.name}"</button>
           <div className="exampleImageContainer">
             <img className="exampleImage" src={`${examplePic.imageUrl}`} alt="Example" />
@@ -31,8 +42,11 @@ const AddToAlbum = ({ user, album }) => {
         </div>
         <div className="choosePicture">
           {(userPictures.length && userPictures.map(picture => {
-            return (<img onClick={() => setExamplePic(picture)} key={picture.id} className="pictureChoice" src={`${picture.imageUrl}`} alt="User Option" />)
-          })) || "Hello"}
+            if (picture.albumId !== album.id) return (<img
+              onClick={() => setExamplePic(picture)} key={picture.id}
+              className="pictureChoice" src={`${picture.imageUrl}`} alt="User Option" />)
+            else return null
+          })) || <h1 style={{ alignSelf: "center", justifySelf: "center", marginLeft: "150px" }}>You currently have no pictures</h1>}
         </div>
       </div>
     </div>}
