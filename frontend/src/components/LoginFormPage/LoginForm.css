@@ -1,0 +1,12 @@
+.loginForm {
+  z-index: 100;
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  /* width: 1000px;
+  height: 100px; */
+}

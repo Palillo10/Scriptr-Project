@@ -18,6 +18,7 @@
   width: 400px;
   height: 212px;
   background-color: rgb(245, 245, 245);
+  border: 2px solid black;
 }
 
 input {

@@ -19,15 +19,15 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink style={{ position: "absolute", right: "1vh" }} to="/signup">Sign Up</NavLink>
       </>
     );
   }
 
   return (
     <div className="navbar">
-      <NavLink exact to="/">Home</NavLink>
-      <NavLink exact to='/explore'>Explore</NavLink>
+      <NavLink style={{ marginLeft: "15vw" }} exact to="/">Home</NavLink>
+      <NavLink exact style={{ marginLeft: "30vw" }} to='/explore'>Explore</NavLink>
       {isLoaded && sessionLinks}
 
     </div>

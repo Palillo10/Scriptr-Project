@@ -1,8 +1,8 @@
 .profileNavbar {
   display: flex;
+  justify-content: space-evenly;
   border: 1px solid rgb(1, 173, 173);
   height: 3vh;
-
 }
 
 #avatar {
@@ -10,6 +10,19 @@
   height: 8vh
 }
 
+.link {
+  color: rgb(1, 182, 182);
+  text-decoration: none;
+  font-size: 22px;
+  position: relative;
+  top: .5vh;
+  /* z-index: -5; */
+}
+
+.link:active {
+  text-decoration: underline;
+  font-size: 24px;
+}
 
 
 .profileImages {
@@ -18,10 +31,16 @@
   margin-bottom: 2%;
   margin-top: 1%;
   border: 1px solid black;
+  position: relative;
+  /* z-index: -5; */
 }
 
 .imageBoxes {
   border: 1px solid black;
+  position: relative;
+  /* display: flex; */
+  /* z-index: -5; */
+
 }
 
 .profileHeader {
@@ -46,29 +65,44 @@
 
 .modalBackground {
   display: none;
-  overflow: hidden;
+  /* overflow: hidden; */
   border: 1px solid black;
   background-color: rgb(0, 0, 0, .4);
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 20;
   width: 100%;
-  height: 110%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
 
 .modal {
-  width: 650px;
-  height: 500px;
+  width: 550px;
+  height: fit-content;
   background-color: white;
 }
 
 
 .deleteButtons {
+  cursor: pointer;
+  margin: 1vh;
   position: relative;
-  right: -15%;
+  /* right: -15%; */
+  background-color: transparent;
+  border-color: red;
+  color: red;
+}
+
+.editPictureButton {
+  cursor: pointer;
+  margin: 1vh;
+  position: relative;
+  /* right: -15%; */
+  background-color: transparent;
+  border-color: rgb(1, 173, 173);
+  color: rgb(1, 173, 173);
 }
 
 .warningBackground {
@@ -88,7 +122,83 @@
 }
 
 .deleteModal {
+  position: relative;
   width: 750px;
   height: 125px;
   background-color: rgb(245, 245, 245);
+}
+
+.uploadButton {
+  cursor: pointer;
+  z-index: 15;
+  position: fixed;
+  right: 3vw;
+  top: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 210, 210);
+  font-size: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+
+.uploadFieldSet {
+  margin: 5px;
+}
+
+.uploadForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmUpload {
+  cursor: pointer;
+  background-color: rgb(0, 210, 210);
+  border-radius: 10px;
+  margin-top: 4px;
+}
+
+.cancelUpload {
+  cursor: pointer;
+  background-color: rgb(0, 210, 210);
+  border-radius: 4px;
+}
+
+
+.uploadButton:hover {
+  border: 4px solid rgba(20, 20, 20, 0.8);
+}
+
+.confirmUpload:hover {
+  cursor: pointer;
+  border: 3px solid black;
+}
+
+.cancelUpload:hover {
+  cursor: pointer;
+  border: 3px solid black;
+}
+
+
+.PictureName {
+  /* position: relative; */
+  border-bottom: 1px rgb(0, 0, 0, .2) solid;
+  text-align: center;
+  /* left: 7vw;
+  top: 0; */
+}
+
+
+.pictureInfo {
+  position: absolute;
+  border: black 1px solid;
+  left: 40vw;
+  bottom: 30%;
+  width: 20vw;
+  height: 10vw;
 }

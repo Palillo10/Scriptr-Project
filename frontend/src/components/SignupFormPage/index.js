@@ -29,8 +29,15 @@ function SignupFormPage() {
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
+  return (<div className="signupBody">
+
+    <form
+      style={{
+        border: "black 3px solid", height: "200px",
+        width: "450px", backgroundColor: "white", display: "flex",
+        flexDirection: "column", alignItems: "flex-end"
+      }}
+      onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
@@ -70,8 +77,9 @@ function SignupFormPage() {
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button style={{ backgroundColor: "rgb(0, 210, 210)", cursor: "pointer" }} type="submit">Sign Up</button>
     </form>
+  </div>
   );
 }
 

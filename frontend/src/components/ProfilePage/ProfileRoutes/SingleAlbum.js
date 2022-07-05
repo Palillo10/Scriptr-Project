@@ -5,7 +5,7 @@ import "./SingleAlbum.css"
 import { updateAlbum } from "../../../store/albums"
 import AddToAlbum from "./AddToAlbum"
 
-const SingleAlbum = ({ user }) => {
+const SingleAlbum = ({ user, currUser }) => {
   const dispatch = useDispatch()
   const { albumId } = useParams()
 
@@ -37,8 +37,10 @@ const SingleAlbum = ({ user }) => {
   }
 
   const onClick = () => {
-    setImageInput(true)
-    setAlbumName(album.name)
+    if (currUser && currUser.username === user.username) {
+      setImageInput(true)
+      setAlbumName(album.name)
+    } else return null
   }
 
   return (<div>
@@ -56,7 +58,7 @@ const SingleAlbum = ({ user }) => {
 
           }}
         ></div>
-        <AddToAlbum album={album} user={user} />
+        {currUser && currUser.username === user.username && <AddToAlbum album={album} user={user} />}
         {imageInput && <form
           style={{
             border: "black 1px solid",

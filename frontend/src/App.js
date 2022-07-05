@@ -12,6 +12,7 @@ import ProfilePage from "./components/ProfilePage";
 import * as sessionActions from "./store/session";
 import { getAllUsers } from "./store/users";
 import { explorePictures } from "./store/pictures";
+import SplashPage from "./components/SplashPage/splashPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            Splash Page
+            <SplashPage />
           </Route>
           <Route exact path="/explore">
             <ExplorePage />

@@ -45,10 +45,10 @@ const ProfilePage = () => {
         <NavLink to={`/people/${user.username}/about`}>About</NavLink>
       </div> */}
       <div>
-        <NavLink to={`/people/${user.username}/photostream`}>Photostream</NavLink>
+        <NavLink className="link" to={`/people/${user.username}/photostream`}>Photostream</NavLink>
       </div>
       <div>
-        <NavLink to={`/people/${user.username}/albums`}>Albums</NavLink>
+        <NavLink className="link" to={`/people/${user.username}/albums`}>Albums</NavLink>
       </div>
     </div>
     <div className="profilePageContent">
@@ -59,14 +59,14 @@ const ProfilePage = () => {
         <ProfileAbout />
       </Route>
       <Route exact path="/people/:username/photostream">
-        <UploadForm user={user} currUser={currUser} />
+        {/* <UploadForm user={user} currUser={currUser} /> */}
         <UserPictures user={user} currUser={currUser} />
       </Route>
       <Route exact path="/people/:username/albums">
-        <Albums user={user} />
+        <Albums user={user} currUser={currUser} />
       </Route>
       <Route exact path="/people/:username/albums/:albumId">
-        <SingleAlbum user={user} />
+        <SingleAlbum user={user} currUser={currUser} />
       </Route>
     </div>
 

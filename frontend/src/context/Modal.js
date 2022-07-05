@@ -27,19 +27,19 @@ export function Modal({ onClose, children }) {
   const modalNode = useContext(ModalContext);
   if (!modalNode) return null;
 
-  // return ReactDOM.createPortal(
-  //   <div id="modal">
-  //     <div id="modal-background" onClick={onClose} />
-  //     <div id="modal-content">
-  //       {children}
-  //     </div>
-  //   </div>,
-  //   modalNode
-  // );
-  return (<div id="modal">
-    <div id="modal-background" onClick={onClose} />
-    <div id="modal-content">
-      {children}
-    </div>
-  </div>)
+  return ReactDOM.createPortal(
+    <div id="modal">
+      <div id="modal-background" onClick={onClose} />
+      <div id="modal-content">
+        {children}
+      </div>
+    </div>,
+    modalNode
+  );
+  // return (<div id="modal">
+  //   <div id="modal-background" onClick={onClose} />
+  //   <div id="modal-content">
+  //     {children}
+  //   </div>
+  // </div>)
 }

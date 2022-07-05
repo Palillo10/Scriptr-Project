@@ -6,7 +6,7 @@ import { getAlbums } from "../../../store/albums";
 import { deleteAlbum } from "../../../store/albums";
 import './Albums.css'
 
-const Albums = ({ user }) => {
+const Albums = ({ user, currUser }) => {
 
   const dispatch = useDispatch()
   const albums = useSelector(state => state.albums)
@@ -22,7 +22,7 @@ const Albums = ({ user }) => {
   }, [dispatch])
 
   return (<div className="albumsPageContainer">
-    <CreateAlbumForm user={user} />
+    {currUser && currUser.username === user.username && <CreateAlbumForm user={user} />}
     <div className="allAlbumsContainer">
       {userAlbums && userAlbums.map(album => {
         return (
@@ -30,12 +30,12 @@ const Albums = ({ user }) => {
             <h2 className="albumName">
               {album.name}
             </h2>
-            <button className="deleteAlbumButton"
+            {currUser && currUser.username === user.username && <button className="deleteAlbumButton"
               onClick={async () => {
                 await dispatch(deleteAlbum(album))
                 setRender(!render)
               }}
-            >Delete Album</button>
+            >Delete Album</button>}
             <NavLink to={`/people/${user.username}/albums/${album.id}`}>
               <img className="albumImage" src={`${album.coverImage}`} />
             </NavLink>
