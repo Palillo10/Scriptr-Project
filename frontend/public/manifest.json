@@ -1,6 +1,13 @@
 {
   "short_name": "React Template",
   "name": "Create React App Template",
+  "icon": [
+    {
+      "src": "favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "112x112"
+    }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
