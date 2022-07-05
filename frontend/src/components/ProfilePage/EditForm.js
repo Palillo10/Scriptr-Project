@@ -62,7 +62,7 @@ const EditForm = ({ picture }) => {
         </form>
       </fieldset>
     </div>}
-    {!showEdit && <button onClick={() => setShowEdit(true)}>Edit Picture</button>}
+    {!showEdit && <button className="editPictureButton" onClick={() => setShowEdit(true)}>Edit Picture</button>}
   </>)
 }
 

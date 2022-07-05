@@ -9,7 +9,7 @@ const { User, Picture, Album } = require('../../db/models');
 const router = express.Router()
 
 router.get('/', asyncHandler(async (req, res) => {
-  const albums = await Album.findAll({ include: [User, Picture] })
+  const albums = await Album.findAll({ include: [User, { model: Picture, include: User }] })
 
   res.json(albums)
 }))
@@ -35,24 +35,53 @@ router.post('/', asyncHandler(async (req, res) => {
 
 router.put('/:id', asyncHandler(async (req, res) => {
   const album = await Album.findByPk(req.params.id, { include: [User, Picture] })
-  const { name, coverImage } = req.body
+  const { name } = req.body
 
   await album.update({
-    name,
-    coverImage
+    name
   })
   await album.save()
 
   res.json(album)
 }))
 
+router.put('/:id/add', asyncHandler(async (req, res) => {
+  const { picture, album } = req.body
+  const updatedPicture = await Picture.findByPk(picture.id, { include: [User] })
+  await updatedPicture.update({
+    albumId: album.id
+  })
+  await updatedPicture.save()
 
-router.delete('/:id', asyncHandler(async (req, res) => {
+
+  const updatedAlbum = await Album.findByPk(req.params.id, { include: [User, Picture] })
+  res.json({ updatedPicture, updatedAlbum })
+}))
+
+router.put('/:id/setToNull', asyncHandler(async (req, res) => {
   const album = await Album.findByPk(req.params.id);
+  const pictures = await Picture.findAll({
+    where: {
+      albumId: album.id
+    }
+  })
+  pictures.forEach(async picture => {
+    await picture.update({
+      albumId: null
+    })
+    await picture.save()
+  })
+  console.log(album)
+  res.json({ album })
+}))
+
+router.post('/:id/delete', asyncHandler(async (req, res) => {
+  const album = await Album.findByPk(req.params.id);
+
 
   await album.destroy();
 
-  const albums = await Album.findAll({ include: User })
+  const albums = await Album.findAll({ include: [User, { model: Picture, include: User }] })
   res.json(albums)
 }))
 

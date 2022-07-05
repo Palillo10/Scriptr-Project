@@ -1,8 +1,30 @@
 /* TODO Add site wide styles */
 body {
-  overflow-x: hidden;
+  overflow: hidden;
+  /* position: relative; */
+  /* left: 0;
+  top: 0; */
+  margin: 0;
+  /* margin: 0px; */
   /* overflow-y: hidden; */
-  width: 98.5vw;
-  height: 91vh;
-  margin-bottom: 10px;
+  min-width: 98.5vw;
+  min-height: 99.5vh;
+}
+
+.Footer {
+  position: fixed;
+  bottom: 0;
+  height: 5vh;
+  width: 100vw;
+  background-color: black;
+  /* z-index: -100; */
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }

@@ -1,14 +1,29 @@
 .profileNavbar {
   display: flex;
-  border: 1px solid black;
-  height: 35px;
-
+  justify-content: space-evenly;
+  border: 1px solid rgb(1, 173, 173);
+  height: 3vh;
 }
 
 #avatar {
-  width: 100px;
-  height: 100px
+  width: 8vh;
+  height: 8vh
 }
+
+.link {
+  color: rgb(1, 182, 182);
+  text-decoration: none;
+  font-size: 22px;
+  position: relative;
+  top: .5vh;
+  /* z-index: -5; */
+}
+
+.link:active {
+  text-decoration: underline;
+  font-size: 24px;
+}
+
 
 .profileImages {
   width: 30%;
@@ -16,55 +31,78 @@
   margin-bottom: 2%;
   margin-top: 1%;
   border: 1px solid black;
+  position: relative;
+  /* z-index: -5; */
 }
 
 .imageBoxes {
   border: 1px solid black;
+  position: relative;
+  /* display: flex; */
+  /* z-index: -5; */
+
 }
 
 .profileHeader {
-  border-bottom: 3px solid black;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  border-bottom: 3px solid rgb(1, 173, 173);
+  background-image: url("https://www.watelectronics.com/wp-content/uploads/different-programming-languages.png");
+  background-repeat: repeat-y;
+  background-position: 70%;
+  background-size: 20%;
 }
 
-h1 {
-  margin-bottom: 10px;
-}
-
-.profilePageContainer {
-  /* padding: 5px; */
-  border: 1px solid black;
-  width: 100%;
-  height: 100%;
-  /* overflow: scroll;
-  overflow-x: hidden; */
+.profilePageContent {
+  /* border: red 2px solid; */
+  overflow-y: scroll;
+  min-height: 75vh;
+  max-height: 75vh;
 }
 
 
 .modalBackground {
   display: none;
-  overflow-x: none;
+  /* overflow: hidden; */
   border: 1px solid black;
   background-color: rgb(0, 0, 0, .4);
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 20;
   width: 100%;
-  height: 110%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
 
 .modal {
-  width: 40vw;
-  height: 75vh;
+  width: 550px;
+  height: fit-content;
   background-color: white;
 }
 
 
 .deleteButtons {
+  cursor: pointer;
+  margin: 1vh;
   position: relative;
-  right: -15%;
+  /* right: -15%; */
+  background-color: transparent;
+  border-color: red;
+  color: red;
+}
+
+.editPictureButton {
+  cursor: pointer;
+  margin: 1vh;
+  position: relative;
+  /* right: -15%; */
+  background-color: transparent;
+  border-color: rgb(1, 173, 173);
+  color: rgb(1, 173, 173);
 }
 
 .warningBackground {
@@ -84,7 +122,83 @@ h1 {
 }
 
 .deleteModal {
-  width: 40vw;
-  height: 15vh;
+  position: relative;
+  width: 750px;
+  height: 125px;
   background-color: rgb(245, 245, 245);
+}
+
+.uploadButton {
+  cursor: pointer;
+  z-index: 15;
+  position: fixed;
+  right: 3vw;
+  top: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 210, 210);
+  font-size: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+
+.uploadFieldSet {
+  margin: 5px;
+}
+
+.uploadForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmUpload {
+  cursor: pointer;
+  background-color: rgb(0, 210, 210);
+  border-radius: 10px;
+  margin-top: 4px;
+}
+
+.cancelUpload {
+  cursor: pointer;
+  background-color: rgb(0, 210, 210);
+  border-radius: 4px;
+}
+
+
+.uploadButton:hover {
+  border: 4px solid rgba(20, 20, 20, 0.8);
+}
+
+.confirmUpload:hover {
+  cursor: pointer;
+  border: 3px solid black;
+}
+
+.cancelUpload:hover {
+  cursor: pointer;
+  border: 3px solid black;
+}
+
+
+.PictureName {
+  /* position: relative; */
+  border-bottom: 1px rgb(0, 0, 0, .2) solid;
+  text-align: center;
+  /* left: 7vw;
+  top: 0; */
+}
+
+
+.pictureInfo {
+  position: absolute;
+  border: black 1px solid;
+  left: 40vw;
+  bottom: 30%;
+  width: 20vw;
+  height: 10vw;
 }
