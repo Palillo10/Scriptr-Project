@@ -38,10 +38,17 @@ const EditForm = ({ picture }) => {
   return (<>
     {showEdit && <div className="EditForm">
       <fieldset>
-        <button onClick={cancelEdit}>X</button>
-        <form onSubmit={editSubmit}>
+        <button
+          style={{ color: "red", borderColor: "red", cursor: "pointer" }}
+          onClick={cancelEdit}>X</button>
+        <form
+          style={{
+            display: "flex", flexDirection: "column",
+            alignItems: "flex-start",
+          }}
+          onSubmit={editSubmit}>
+          <label htmlFor="editName">Edit Name</label>
           <div>
-            <label htmlFor="editName">Edit Name</label>
             <input type="text"
               id="editName"
               value={editName}
@@ -49,16 +56,22 @@ const EditForm = ({ picture }) => {
               required
             />
           </div>
+          <label htmlFor="editDescription">Edit Description</label>
           <div>
-            <label htmlFor="editDescription">Edit Description</label>
             <textarea type="text"
+              rows="3"
+              cols="40"
               id="editDescription"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
             />
           </div>
-          <button>Submit Edit</button>
+          <button
+            style={{
+              backgroundColor: "rgb(1, 173, 173)", cursor: "pointer"
+            }}
+          >Submit Edit</button>
         </form>
       </fieldset>
     </div>}
