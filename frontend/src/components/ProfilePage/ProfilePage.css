@@ -196,7 +196,9 @@
 
 .pictureInfo {
   position: absolute;
-  border: black 1px solid;
+  /* border: black 1px solid; */
+  font-size: larger;
+
   left: 40vw;
   bottom: 30%;
   width: 20vw;

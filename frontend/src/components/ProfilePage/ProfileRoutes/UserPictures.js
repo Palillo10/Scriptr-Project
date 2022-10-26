@@ -1,6 +1,7 @@
 import DeleteWarning from "../ProfileModals/DeleteWarningModal";
 import { useSelector } from "react-redux";
 import UploadForm from "../ProfileModals/UploadForm";
+import { NavLink } from "react-router-dom";
 
 const UserPictures = ({ currUser, user }) => {
   const pictures = useSelector(state => state.pictures.allPictures)
@@ -16,8 +17,11 @@ const UserPictures = ({ currUser, user }) => {
     <div style={{ position: "relative" }}>
       {userPictures?.map(picture => {
         return (<div className="imageBoxes" key={picture.id}>
+
           <h1 className="PictureName">{picture.name}</h1>
-          <img className="profileImages" src={picture.imageUrl} alt="avatar" />
+          <NavLink to={`/photos/${picture.id}`}>
+            <img className="profileImages" src={picture.imageUrl} alt="avatar" />
+          </NavLink>
           <div className="pictureInfo">
             Description:
             <div style={{ width: "90%", height: "50%", position: "relative", left: '3%' }}>

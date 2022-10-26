@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, Route, NavLink, Redirect } from "react-router-dom";
 
 import { getAllUsers } from "../../store/users";
-import { explorePictures } from "../../store/pictures";
+// import { explorePictures } from "../../store/pictures";
 
 import UserPictures from "./ProfileRoutes/UserPictures";
-import UploadForm from "./ProfileModals/UploadForm";
+// import UploadForm from "./ProfileModals/UploadForm";
 import Albums from "./ProfileRoutes/Albums"
 import ProfileAbout from "./ProfileRoutes/About";
 import { getAlbums } from "../../store/albums";

@@ -7,6 +7,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import ExplorePage from "./components/ExplorePage";
 import ProfilePage from "./components/ProfilePage";
+import PhotoPage from "./components/PhotoPage";
 
 
 import * as sessionActions from "./store/session";
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route path="/people/:username" >
             <ProfilePage />
+          </Route>
+          <Route path="/photos/:pictureId" >
+            <PhotoPage />
           </Route>
         </Switch>
       )}
